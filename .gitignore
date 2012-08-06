@@ -1,0 +1,6 @@
+*.suo
+*.user
+*.sln.docstates
+[Bb]in
+[Oo]bj
+KeePass.exe
