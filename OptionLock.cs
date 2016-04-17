@@ -94,6 +94,7 @@ namespace OptionLock
                 case "m_menuViewConfigColumns":
                 case "m_menuViewSortBy":
                 case "m_menuViewTanOptions":
+                case "m_menuViewEntryListGrouping":
                 case "m_menuViewShowEntriesOfSubGroups":
                 // Tools
                 case "m_menuToolsPwGenerator":
@@ -103,7 +104,7 @@ namespace OptionLock
                 case "m_menuToolsOptions":
                 // Help
                 case "m_menuHelpSelectSource":
-                case "m_menuHelpCheckForUpdate":
+                case "m_menuHelpCheckForUpdates":
                   m_UnlockedDbItems.AddFirst(stripItem);
                   break;
               }
