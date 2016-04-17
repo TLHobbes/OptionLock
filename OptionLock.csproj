@@ -44,6 +44,9 @@
     <Compile Include="OptionLock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(TargetFileName) "C:\Program Files (x86)\KeePass Password Safe 2\"</PostBuildEvent>

@@ -5,4 +5,4 @@ OptionLock is a plugin for KeePass 2.x that keeps unnecessary UI elements of Kee
 while all documents are locked and also while there are no documents. OptionLock does not
 disable any UI elements while at least one database is opened and unlocked.
 
-A PLGX plugin for KeePass 2.x, built from this code, is available in the [downloads](https://github.com/TLHobbes/OptionLock/downloads) section.
+A PLGX plugin for KeePass 2.x, built from this code, is available in the [releases](https://github.com/TLHobbes/OptionLock/releases) section.
