@@ -50,10 +50,24 @@ namespace OptionLock
       // TrayContextMenu
       foreach (var item in m_Host.MainWindow.TrayContextMenu.Items)
       {
-        var menuItem = item as ToolStripItem;
-        if (menuItem != null && menuItem.Name == "m_ctxTrayOptions")
+        var stripItem = item as ToolStripItem;
+        if (stripItem != null)
         {
-          m_UnlockedDbItems.AddFirst(menuItem);
+          switch (stripItem.Name)
+          {
+            /// --- BEGIN ALLOW LIST --- ///
+            case "m_ctxTrayTray":
+            case "m_ctxTrayLock":
+            case "m_ctxTrayFileExit":
+                // Do not add these allowed items
+                break;
+            /// --- END ALLOW LIST --- ///
+                
+            default:
+                // Add everything else, which will include any future added menu items from newer KeePass 2 releases
+                m_UnlockedDbItems.AddFirst(stripItem);
+                break;
+          }
         }
       }
 
@@ -71,40 +85,29 @@ namespace OptionLock
               switch (stripItem.Name)
               {
                 // File
-                case "m_menuFileLock":
-                  m_FileLockItem = stripItem;
-                  m_FileLockItem.EnabledChanged += FileLockMenuItem_EnabledChanged;
-                  break;
-
-                // File
                 case "m_menuFileOpen":
                 case "m_menuFileRecent":
                   m_NoDocItems.AddFirst(stripItem);
                   break;
 
+                /// --- BEGIN ALLOW LIST --- ///
                 // File
-                case "m_menuFileNew":
-                case "m_menuFileClose":
-                // View
-                case "m_menuChangeLanguage":
-                case "m_menuViewShowToolBar":
-                case "m_menuViewShowEntryView":
-                case "m_menuViewWindowLayout":
-                case "m_menuViewAlwaysOnTop":
-                case "m_menuViewConfigColumns":
-                case "m_menuViewSortBy":
-                case "m_menuViewTanOptions":
-                case "m_menuViewEntryListGrouping":
-                case "m_menuViewShowEntriesOfSubGroups":
-                // Tools
-                case "m_menuToolsPwGenerator":
-                case "m_menuToolsDb":
-                case "m_menuToolsTriggers":
-                case "m_menuToolsPlugins":
-                case "m_menuToolsOptions":
+                case "m_menuFileLock":
+                  m_FileLockItem = stripItem;
+                  m_FileLockItem.EnabledChanged += FileLockMenuItem_EnabledChanged;
+                  break;
+                case "m_menuFileExit":
                 // Help
-                case "m_menuHelpSelectSource":
-                case "m_menuHelpCheckForUpdates":
+                case "m_menuHelpContents":
+                case "m_menuHelpWebsite":
+                case "m_menuHelpDonate":
+                case "m_menuHelpAbout":
+                  // Do not add these allowed items
+                  break;
+                /// --- END ALLOW LIST --- ///
+                
+                default:
+                  // Add everything else, which will include any future added menu items from newer KeePass 2 releases
                   m_UnlockedDbItems.AddFirst(stripItem);
                   break;
               }
@@ -123,12 +126,16 @@ namespace OptionLock
         {
           switch (stripItem.Name)
           {
+            /// --- BEGIN ALLOW LIST --- ///
             case "m_tbOpenDatabase":
               m_NoDocItems.AddFirst(stripItem);
               break;
-
-            case "m_tbNewDatabase":
-            case "m_tbCloseTab":
+            case "m_tbLockWorkspace":
+              // Do not add these allowed items
+              break;
+            /// --- END ALLOW LIST --- ///
+                        
+            default:
               m_UnlockedDbItems.AddFirst(stripItem);
               break;
           }
